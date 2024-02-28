@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mover Cursor</title>
+<title>Mover Cursor Automáticamente</title>
 <style>
     #container {
         width: 100vw;
@@ -31,16 +31,20 @@
     document.addEventListener('DOMContentLoaded', function() {
         var container = document.getElementById('container');
         var customCursor = document.getElementById('custom-cursor');
+        var speed = 5; // Velocidad del movimiento
         
-        container.addEventListener('mousemove', function(event) {
-            // Obtener la posición del cursor relativa al contenedor
-            var x = event.clientX - container.offsetLeft;
-            var y = event.clientY - container.offsetTop;
+        // Función para mover automáticamente el cursor
+        function moveCursor() {
+            var x = Math.random() * container.offsetWidth;
+            var y = Math.random() * container.offsetHeight;
             
-            // Mover el cursor personalizado a la nueva posición
-            customCursor.style.top = (y - 10) + 'px';
-            customCursor.style.left = (x - 10) + 'px';
-        });
+            customCursor.style.top = y + 'px';
+            customCursor.style.left = x + 'px';
+            
+            setTimeout(moveCursor, 1000); // Mover el cursor cada segundo
+        }
+        
+        moveCursor(); // Comenzar el movimiento automático del cursor al cargar la página
     });
 </script>
 </body>
