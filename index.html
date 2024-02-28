@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mover Cursor</title>
+<style>
+    #container {
+        width: 100vw;
+        height: 100vh;
+        cursor: none; /* Oculta el cursor predeterminado */
+        position: relative;
+    }
+    
+    #custom-cursor {
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+        pointer-events: none; /* Asegura que el cursor personalizado no interrumpa los eventos del mouse */
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <div id="custom-cursor"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        var customCursor = document.getElementById('custom-cursor');
+        
+        container.addEventListener('mousemove', function(event) {
+            // Obtener la posición del cursor relativa al contenedor
+            var x = event.clientX - container.offsetLeft;
+            var y = event.clientY - container.offsetTop;
+            
+            // Mover el cursor personalizado a la nueva posición
+            customCursor.style.top = (y - 10) + 'px';
+            customCursor.style.left = (x - 10) + 'px';
+        });
+    });
+</script>
+</body>
+</html>
